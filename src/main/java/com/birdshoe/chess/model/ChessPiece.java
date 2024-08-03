@@ -11,5 +11,7 @@ public abstract class ChessPiece {
         return color;
     }
 
-    public abstract boolean isValidMove(int startX, int startY, int endX, int endY);
+    public abstract String getSymbol();
+
+    public abstract boolean isValidMove(int startX, int startY, int endX, int endY, ChessBoard board);
 }
