@@ -25,21 +25,11 @@ public class Queen extends ChessPiece {
             return false;
         }
 
+        // Determina el incremento de pasos para la dirección del movimiento
+        int stepX = Integer.compare(endX, startX);
+        int stepY = Integer.compare(endY, startY);
+
         // Verifica si hay piezas en el camino
-        int stepX = 0;
-        int stepY = 0;
-
-        if (isHorizontal) {
-            stepX = (endX > startX) ? 1 : -1;
-            stepY = 0;
-        } else if (isVertical) {
-            stepX = 0;
-            stepY = (endY > startY) ? 1 : -1;
-        } else if (isDiagonal) {
-            stepX = (endX > startX) ? 1 : -1;
-            stepY = (endY > startY) ? 1 : -1;
-        }
-
         int x = startX + stepX;
         int y = startY + stepY;
 
