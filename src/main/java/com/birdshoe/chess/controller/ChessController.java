@@ -1,29 +1,26 @@
 package com.birdshoe.chess.controller;
 
-import com.birdshoe.chess.model.ChessBoard;
+import com.birdshoe.chess.service.ChessService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/chess")
 public class ChessController {
-    private ChessBoard chessBoard;
 
-    public ChessController() {
-        this.chessBoard = new ChessBoard();
-    }
+    @Autowired
+    private ChessService chessService;
 
     @PostMapping("/move")
     public String movePiece(@RequestParam int startX, @RequestParam int startY, @RequestParam int endX, @RequestParam int endY) {
-        boolean success = chessBoard.movePiece(startX, startY, endX, endY);
-        if(success){
-            chessBoard.printBoardConsole();
-            return "Movimiento exitoso";
+        boolean success = chessService.movePiece(startX, startY, endX, endY);
+        if (success) {
+            chessService.printBoardConsole();
+            String currentPlayer = chessService.getCurrentPlayer();
+            System.out.println(currentPlayer);
+            return "Movimiento exitoso, turno del jugador: " + currentPlayer + "\n" +
+                    chessService.printBoard();
         }
         return "Movimiento inválido";
-    }
-
-    @GetMapping("/board")
-    public String getBoard() {
-        return chessBoard.printBoard();
     }
 }
