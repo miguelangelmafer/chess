@@ -20,7 +20,7 @@ public class ChessBoard {
             int front = frontRow[i];
 
             // Peones
-            for (int j = 0; j < 8; j++) {
+           for (int j = 0; j < 8; j++) {
                 board[front][j] = new Pawn(color);
             }
 
@@ -37,9 +37,11 @@ public class ChessBoard {
             board[back][5] = new Bishop(color);
 
             // Rey y Reina
-            board[back][3] = new Queen(color);
-            board[back][4] = new King(color);
+            board[back][4] = new Queen(color);
+            board[back][3] = new King(color);
         }
+
+        board[6][1] = new Pawn("white");
     }
 
     public ChessPiece getPieceAt(int x, int y) {
@@ -58,8 +60,8 @@ public class ChessBoard {
     public String printBoard() {
         StringBuilder sb = new StringBuilder();
         sb.append("  a b c d e f g h\n");
-        for (int i = 0; i < 8; i++) {
-            sb.append(8 - i).append(" ");
+        for (int i = 7; i >= 0; i--) {
+            sb.append(1 + i).append(" ");
             for (int j = 0; j < 8; j++) {
                 ChessPiece piece = board[i][j];
                 if (piece == null) {
@@ -68,7 +70,7 @@ public class ChessBoard {
                     sb.append(piece.getSymbol()).append(" ");
                 }
             }
-            sb.append(8 - i).append("\n");
+            sb.append(1 + i).append("\n");
         }
         sb.append("  a b c d e f g h\n");
         return sb.toString();

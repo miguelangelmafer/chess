@@ -2,6 +2,7 @@ package com.birdshoe.chess.service;
 
 import com.birdshoe.chess.model.ChessBoard;
 import com.birdshoe.chess.model.ChessPiece;
+import com.birdshoe.chess.model.Pawn;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,8 +27,10 @@ public class ChessService {
         ChessPiece piece = board.getPieceAt(startX, startY);
         if (piece != null && piece.getColor().equals(currentPlayer)) {
             if (piece.isValidMove(startX, startY, endX, endY, board)) {
+                piece = piece instanceof Pawn ? ((Pawn) piece).promoteIfEligible(endX, endY) : piece;
                 board.setPieceAt(endX, endY, piece);
                 board.setPieceAt(startX, startY, null);
+
                 switchPlayer();
                 return true;
             }

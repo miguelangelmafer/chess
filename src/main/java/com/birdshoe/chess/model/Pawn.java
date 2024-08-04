@@ -34,4 +34,11 @@ public class Pawn extends ChessPiece{
 
         return false;
     }
+
+    public ChessPiece promoteIfEligible(int endX, int endY) {
+        if ((this.getColor().equals("white") && endX == 7) || (this.getColor().equals("black") && endX == 0)) {
+            return new Queen(this.getColor());
+        }
+        return this; // Retorna la misma pieza si no es elegible para promoción
+    }
 }
