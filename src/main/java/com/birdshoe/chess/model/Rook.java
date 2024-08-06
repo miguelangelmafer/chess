@@ -1,9 +1,11 @@
 package com.birdshoe.chess.model;
 
 public class Rook extends ChessPiece {
+    private boolean hasMoved;
 
     public Rook(String color) {
         super(color);
+        this.hasMoved = false;
     }
 
     @Override
@@ -13,12 +15,10 @@ public class Rook extends ChessPiece {
 
     @Override
     public boolean isValidMove(int startX, int startY, int endX, int endY, ChessBoard board) {
-        // La torre se mueve en línea recta: horizontalmente o verticalmente
         if (startX != endX && startY != endY) {
             return false;
         }
 
-        // Verifica si hay piezas en el camino
         if (startX == endX) {
             int minY = Math.min(startY, endY);
             int maxY = Math.max(startY, endY);
@@ -37,12 +37,19 @@ public class Rook extends ChessPiece {
             }
         }
 
-        // Verifica la casilla de destino
         ChessPiece targetPiece = board.getPieceAt(endX, endY);
         if (targetPiece != null && targetPiece.getColor().equals(this.getColor())) {
             return false;
         }
 
         return true;
+    }
+
+    public void setHasMoved(boolean hasMoved) {
+        this.hasMoved = hasMoved;
+    }
+
+    public boolean hasMoved() {
+        return hasMoved;
     }
 }

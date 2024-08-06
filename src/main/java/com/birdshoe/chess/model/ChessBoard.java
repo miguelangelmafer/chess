@@ -9,7 +9,6 @@ public class ChessBoard {
     }
 
     private void initializeBoard() {
-        // Inicializa las torres en sus posiciones iniciales
         String[] colors = {"white", "black"};
         int[] backRow = {0, 7};
         int[] frontRow = {1, 6};
@@ -20,7 +19,7 @@ public class ChessBoard {
             int front = frontRow[i];
 
             // Peones
-           /*for (int j = 0; j < 8; j++) {
+            /*for (int j = 0; j < 8; j++) {
                 board[front][j] = new Pawn(color);
             }*/
 
@@ -33,12 +32,12 @@ public class ChessBoard {
             //board[back][6] = new Knight(color);
 
             // Alfiles
-            //[back][2] = new Bishop(color);
+            //board[back][2] = new Bishop(color);
             //board[back][5] = new Bishop(color);
 
             // Rey y Reina
-            //board[back][4] = new Queen(color);
-            board[back][3] = new King(color);
+            //board[back][3] = new Queen(color);
+            board[back][4] = new King(color);
         }
     }
 
